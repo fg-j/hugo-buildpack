@@ -75,7 +75,6 @@ func Build(entryResolver EntryResolver, dependencyManager DependencyManager, hug
 		logs.Process("Executing build process")
 		buffer := bytes.NewBuffer(nil)
 		args := []string{
-			"-D",
 			"--destination", "output",
 		}
 

@@ -76,7 +76,7 @@ func testDefault(t *testing.T, context spec.G, it spec.S) {
 				"  Installing Hugo",
 				"",
 				"  Executing build process",
-				"    Running 'hugo -D --destination output'",
+				"    Running 'hugo --destination output'",
 			))
 		})
 	})
