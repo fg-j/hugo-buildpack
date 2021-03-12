@@ -1,0 +1,23 @@
+api = "0.2"
+
+[buildpack]
+  id = "fg-j/explorations/hugo-buildpack"
+  homepage = "https://github.com/fg-j/hugo-buildpack"
+  name = "Hugo Buildpack"
+
+[[stacks]]
+  id = "io.buildpacks.stacks.bionic"
+
+[metadata]
+  include-files = ["bin/run","bin/build","bin/detect","buildpack.toml"]
+  pre-package = "./scripts/build.sh"
+
+  [[metadata.dependencies]]
+    id = "hugo"
+    name = "Hugo"
+    sha256 = "35099b33780075ed9c709296f371d6b9fd44fa9ed3d26af4266ed6be4097250d"
+    source = "https://github.com/gohugoio/hugo/releases/download/v0.81.0/hugo_0.81.0_Linux-64bit.tar.gz"
+    source_sha256 = ""
+    stacks = ["io.buildpacks.stacks.bionic", "org.cloudfoundry.stacks.cflinuxfs3"]
+    uri = "https://github.com/gohugoio/hugo/releases/download/v0.81.0/hugo_0.81.0_Linux-64bit.tar.gz"
+    version = "0.81.0"
