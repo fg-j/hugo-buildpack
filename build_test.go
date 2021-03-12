@@ -97,14 +97,15 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 			Plan: packit.BuildpackPlan{},
 			Layers: []packit.Layer{
 				{
-					Name:      "hugo",
-					Path:      filepath.Join(layersDir, "hugo"),
-					SharedEnv: packit.Environment{},
-					BuildEnv:  packit.Environment{},
-					LaunchEnv: packit.Environment{},
-					Build:     false,
-					Launch:    false,
-					Cache:     false,
+					Name:             "hugo",
+					Path:             filepath.Join(layersDir, "hugo"),
+					SharedEnv:        packit.Environment{},
+					BuildEnv:         packit.Environment{},
+					LaunchEnv:        packit.Environment{},
+					ProcessLaunchEnv: map[string]packit.Environment{},
+					Build:            false,
+					Launch:           false,
+					Cache:            false,
 				},
 			},
 		}))
