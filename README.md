@@ -7,7 +7,7 @@ buildpack does *not* install any server for the assets.
 The buildpack detects true if the app contains a `content` directory that
 contains at least one Markdown or HTML file.
 
-The buildpack places generated static files in `<app root>/output`.
+The buildpack places generated static files in `<app root>/public`.
 
 ## Integration
 
