@@ -75,7 +75,7 @@ func Build(entryResolver EntryResolver, dependencyManager DependencyManager, hug
 		logs.Process("Executing build process")
 		buffer := bytes.NewBuffer(nil)
 		args := []string{
-			"--destination", "output",
+			"--destination", "public",
 		}
 
 		logs.Subprocess("Running 'hugo %s'", strings.Join(args, " "))
