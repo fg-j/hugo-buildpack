@@ -7,18 +7,19 @@ import (
 )
 
 type DependencyManager struct {
-	InstallCall struct {
+	DeliverCall struct {
 		sync.Mutex
 		CallCount int
 		Receives  struct {
-			Dependency postal.Dependency
-			CnbPath    string
-			LayerPath  string
+			Dependency   postal.Dependency
+			CnbPath      string
+			LayerPath    string
+			PlatformPath string
 		}
 		Returns struct {
 			Error error
 		}
-		Stub func(postal.Dependency, string, string) error
+		Stub func(postal.Dependency, string, string, string) error
 	}
 	ResolveCall struct {
 		sync.Mutex
@@ -37,17 +38,18 @@ type DependencyManager struct {
 	}
 }
 
-func (f *DependencyManager) Install(param1 postal.Dependency, param2 string, param3 string) error {
-	f.InstallCall.Lock()
-	defer f.InstallCall.Unlock()
-	f.InstallCall.CallCount++
-	f.InstallCall.Receives.Dependency = param1
-	f.InstallCall.Receives.CnbPath = param2
-	f.InstallCall.Receives.LayerPath = param3
-	if f.InstallCall.Stub != nil {
-		return f.InstallCall.Stub(param1, param2, param3)
+func (f *DependencyManager) Deliver(param1 postal.Dependency, param2 string, param3 string, param4 string) error {
+	f.DeliverCall.Lock()
+	defer f.DeliverCall.Unlock()
+	f.DeliverCall.CallCount++
+	f.DeliverCall.Receives.Dependency = param1
+	f.DeliverCall.Receives.CnbPath = param2
+	f.DeliverCall.Receives.LayerPath = param3
+	f.DeliverCall.Receives.PlatformPath = param4
+	if f.DeliverCall.Stub != nil {
+		return f.DeliverCall.Stub(param1, param2, param3, param4)
 	}
-	return f.InstallCall.Returns.Error
+	return f.DeliverCall.Returns.Error
 }
 func (f *DependencyManager) Resolve(param1 string, param2 string, param3 string, param4 string) (postal.Dependency, error) {
 	f.ResolveCall.Lock()

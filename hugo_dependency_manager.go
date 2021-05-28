@@ -19,8 +19,8 @@ func NewHugoDependencyManager(transport cargo.Transport) HugoDependencyManager {
 	}
 }
 
-func (h HugoDependencyManager) Install(dependency postal.Dependency, cnbPath, layerPath string) error {
-	err := h.Service.Install(dependency, cnbPath, layerPath)
+func (h HugoDependencyManager) Deliver(dependency postal.Dependency, cnbPath, layerPath, platformPath string) error {
+	err := h.Service.Deliver(dependency, cnbPath, layerPath, platformPath)
 	if err != nil {
 		return err
 	}
