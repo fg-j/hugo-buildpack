@@ -174,7 +174,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 
 		context("dependency installation fails", func() {
 			it.Before(func() {
-				dependencyManager.InstallCall.Returns.Error = errors.New("dependency installation error")
+				dependencyManager.DeliverCall.Returns.Error = errors.New("dependency installation error")
 			})
 
 			it("fails to build with the appropriate error", func() {

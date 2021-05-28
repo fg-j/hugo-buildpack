@@ -22,7 +22,7 @@ type EntryResolver interface {
 //go:generate faux --interface DependencyManager --output fakes/dependency_manager.go
 type DependencyManager interface {
 	Resolve(path, id, version, stack string) (postal.Dependency, error)
-	Install(dependency postal.Dependency, cnbPath, layerPath string) error
+	Deliver(dependency postal.Dependency, cnbPath, layerPath, platformPath string) error
 }
 
 //go:generate faux --interface Executable --output fakes/executable.go
@@ -64,7 +64,7 @@ func Build(entryResolver EntryResolver, dependencyManager DependencyManager, hug
 
 		logs.Process("Installing Hugo")
 
-		err = dependencyManager.Install(dependency, context.CNBPath, hugoLayer.Path)
+		err = dependencyManager.Deliver(dependency, context.CNBPath, hugoLayer.Path, context.Platform.Path)
 		if err != nil {
 			return packit.BuildResult{}, err
 		}
